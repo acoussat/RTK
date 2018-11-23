@@ -2,6 +2,11 @@ WRAP_GGO(rtkconjugategradient_GGO_C rtkconjugategradient.ggo ../rtkinputprojecti
 add_executable(rtkconjugategradient rtkconjugategradient.cxx ${rtkconjugategradient_GGO_C})
 target_link_libraries(rtkconjugategradient RTK)
 
+# Also compiles using doubles, for testing purposes
+add_executable(rtkconjugategradient-d rtkconjugategradient.cxx ${rtkconjugategradient_GGO_C})
+target_link_libraries(rtkconjugategradient-d RTK)
+set_target_properties(rtkconjugategradient-d PROPERTIES COMPILE_FLAGS -DRTK_USE_DOUBLES)
+
 # Installation code
 if(NOT RTK_INSTALL_NO_EXECUTABLES)
   foreach(EXE_NAME rtkconjugategradient) 

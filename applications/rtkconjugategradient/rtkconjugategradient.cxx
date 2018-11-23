@@ -36,7 +36,12 @@ int main(int argc, char * argv[])
 {
   GGO(rtkconjugategradient, args_info);
 
+#ifdef RTK_USE_DOUBLES
+  typedef double OutputPixelType;
+#else
   typedef float OutputPixelType;
+#endif
+
   const unsigned int Dimension = 3;
   std::vector<double> costs;
   std::ostream_iterator<double> costs_it(std::cout,"\n");
