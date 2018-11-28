@@ -24,6 +24,7 @@
 #include <itkProcessObject.h>
 #include <itkObject.h>
 #include <itkCommand.h>
+#include <itkIterationReporter.h>
 
 #include "rtkConjugateGradientImageFilter.h"
 #include "rtkReconstructionConjugateGradientOperator.h"
