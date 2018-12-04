@@ -1,3 +1,0 @@
-set(WRAPPER_AUTO_INCLUDE_HEADERS OFF)
-itk_wrap_include(itkEventObject.h)
-itk_wrap_simple_class("itk::IterationEvent")
