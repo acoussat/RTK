@@ -71,6 +71,22 @@ int main(int argc, char * argv[])
   tvdenoising->SetGamma(args_info.gamma_arg);
   tvdenoising->SetNumberOfIterations(args_info.niter_arg);
 
+  // Set dimensions to denoise
+  if (args_info.dimensions_given)
+    {
+      // Cast array of integers to array of booleans
+      bool dimensions[Dimension] = {false, false, false};
+      for (unsigned int dim = 0; dim < Dimension ; dim++)
+        {
+          if (args_info.dimensions_arg[dim] != 0)
+            {
+              dimensions[dim] = true;
+            }
+        }
+
+      tvdenoising->SetDimensionsProcessed(dimensions);
+    }
+
   // Write
   using WriterType = itk::ImageFileWriter<OutputImageType>;
   WriterType::Pointer writer = WriterType::New();
