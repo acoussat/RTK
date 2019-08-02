@@ -28,11 +28,7 @@ template< typename TOutputImage, typename TGradientImage>
 TotalVariationDenoisingBPDQImageFilter<TOutputImage, TGradientImage>
 ::TotalVariationDenoisingBPDQImageFilter()
 {
-  // Default behaviour is to process all dimensions
-  for (unsigned int dim = 0; dim < TOutputImage::ImageDimension; dim++)
-    {
-    this->m_DimensionsProcessed[dim] = true;
-    }
+  this->m_DimensionsProcessed.assign(TOutputImage::ImageDimension, true);
 
   // Create the sub filters
   m_ThresholdFilter = MagnitudeThresholdFilterType::New();
@@ -41,7 +37,7 @@ TotalVariationDenoisingBPDQImageFilter<TOutputImage, TGradientImage>
 template< typename TOutputImage, typename TGradientImage>
 void
 TotalVariationDenoisingBPDQImageFilter<TOutputImage, TGradientImage>
-::SetDimensionsProcessed(bool* arg)
+::SetDimensionsProcessed(const std::vector<bool> & arg)
 {
   bool bModif=false;
   for (unsigned int dim=0; dim<TOutputImage::ImageDimension; dim++)

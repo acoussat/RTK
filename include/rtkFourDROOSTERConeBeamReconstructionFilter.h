@@ -417,8 +417,8 @@ protected:
   float m_LambdaL0Time;
   float m_SoftThresholdWavelets;
   float m_PhaseShift;
-  bool  m_DimensionsProcessedForTVSpace[VolumeSeriesType::ImageDimension];
-  bool  m_DimensionsProcessedForTVTime[VolumeSeriesType::ImageDimension];
+  std::vector<bool>  m_DimensionsProcessedForTVSpace;
+  std::vector<bool>  m_DimensionsProcessedForTVTime;
 
   typename itk::ImageToImageFilter<VolumeSeriesType, VolumeSeriesType>::Pointer m_DownstreamFilter;
 

@@ -109,11 +109,7 @@ int main(int, char** )
   TVdenoising->SetNumberOfIterations(100);
   TVdenoising->SetGamma(0.3);
 
-  bool dimsProcessed[Dimension];
-  for (bool & dimProcessed : dimsProcessed)
-    {
-    dimProcessed = true;
-    }
+  std::vector<bool> dimsProcessed(Dimension, true);
   TVdenoising->SetDimensionsProcessed(dimsProcessed);
 
   // Update the TV denoising filter

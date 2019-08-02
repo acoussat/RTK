@@ -43,10 +43,7 @@ BackwardDifferenceDivergenceImageFilter<TInputImage, TOutputImage>
   m_IsBoundaryConditionOverriden = false;
 
   // default behaviour is to process all dimensions
-  for (unsigned int dim = 0; dim < TInputImage::ImageDimension; dim++)
-    {
-    m_DimensionsProcessed[dim] = true;
-    }
+  m_DimensionsProcessed.assign(TInputImage::ImageDimension, true);
 }
 
 template <class TInputImage, class TOutputImage>
@@ -60,7 +57,7 @@ BackwardDifferenceDivergenceImageFilter<TInputImage, TOutputImage>
 template <class TInputImage, class TOutputImage>
 void
 BackwardDifferenceDivergenceImageFilter<TInputImage, TOutputImage>
-::SetDimensionsProcessed(bool* DimensionsProcessed)
+::SetDimensionsProcessed(const std::vector<bool> & DimensionsProcessed)
 {
   bool bModif=false;
   for (unsigned int dim=0; dim<TInputImage::ImageDimension; dim++)

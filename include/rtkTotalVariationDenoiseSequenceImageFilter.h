@@ -98,7 +98,8 @@ public:
     itkGetMacro(NumberOfIterations, int)
     itkSetMacro(NumberOfIterations, int)
 
-    void SetDimensionsProcessed(bool* arg);
+    /* void SetDimensionsProcessed(const std::vector<bool> & arg); */
+    itkSetMacro(DimensionsProcessed, std::vector<bool>)
 
     /** Typedefs of internal filters */
 #ifdef RTK_USE_CUDA
@@ -136,7 +137,7 @@ protected:
     /** Information for the total variation denoising filter */
     double m_Gamma{1.};
     int    m_NumberOfIterations{1};
-    bool   m_DimensionsProcessed[TImage::ImageDimension];
+    std::vector<bool>   m_DimensionsProcessed;
 };
 } //namespace ITK
 

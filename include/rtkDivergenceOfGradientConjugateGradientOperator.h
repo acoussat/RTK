@@ -84,7 +84,7 @@ protected:
   typename GradientFilterType::Pointer             m_GradientFilter;
   typename DivergenceFilterType::Pointer           m_DivergenceFilter;
 
-  bool m_DimensionsProcessed[TInputImage::ImageDimension];
+  std::vector<bool> m_DimensionsProcessed;
 
 };
 

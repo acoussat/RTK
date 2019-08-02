@@ -86,10 +86,8 @@ int main(int, char** )
 
   // Set the dimensions along which gradient and divergence
   // should be computed
-  bool computeGradientAlongDim[Dimension];
-  computeGradientAlongDim[0] = true;
+  std::vector<bool> computeGradientAlongDim(Dimension, true);
   computeGradientAlongDim[1] = false;
-  computeGradientAlongDim[2] = true;
 
   // Compute the gradient of both volumes
   using GradientFilterType = rtk::ForwardDifferenceGradientImageFilter<ImageType, OutputPixelType, OutputPixelType, GradientImageType>;

@@ -165,11 +165,7 @@ int main(int, char** )
   using GradientFilterType = rtk::ForwardDifferenceGradientImageFilter<OutputImageType>;
   GradientFilterType::Pointer gradientFilter = GradientFilterType::New();
   gradientFilter->SetInput(randomVolumeSource->GetOutput());
-  bool dimsProcessed[Dimension];
-  for (bool & dimProcessed : dimsProcessed)
-    {
-    dimProcessed = true;
-    }
+  std::vector<bool> dimsProcessed(Dimension, true);
   gradientFilter->SetDimensionsProcessed(dimsProcessed);
   using DivergenceFilterType = rtk::BackwardDifferenceDivergenceImageFilter<GradientFilterType::OutputImageType>;
   DivergenceFilterType::Pointer divergenceFilter = DivergenceFilterType::New();

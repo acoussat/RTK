@@ -29,11 +29,8 @@ TotalNuclearVariationDenoisingBPDQImageFilter<TOutputImage, TGradientImage>
 ::TotalNuclearVariationDenoisingBPDQImageFilter()
 {
   // Default behaviour is to process all spatial dimensions, i.e. all but the last one, which contains channels
-  for (unsigned int dim = 0; dim < TOutputImage::ImageDimension - 1; dim++)
-    {
-    this->m_DimensionsProcessed[dim] = true;
-    }
-  this->m_DimensionsProcessed[TOutputImage::ImageDimension - 1] = false;
+  this->m_DimensionsProcessed.assign(TOutputImage::ImageDimension - 1, true);
+  this->m_DimensionsProcessed.push_back(false);
 
   // Create the SingularValueThresholdFilter to replace the generic filter
   // used in the base class

@@ -11,7 +11,7 @@ void CheckGradient(typename TImage::Pointer itkNotUsed(im), typename TGradient::
 {
 }
 #else
-void CheckGradient(typename TImage::Pointer im, typename TGradient::Pointer grad, bool* dimensionsProcessed)
+void CheckGradient(typename TImage::Pointer im, typename TGradient::Pointer grad, const std::vector<bool> & dimensionsProcessed)
 {
   // Generate a list of indices of the dimensions to process
   std::vector<int> dimsToProcess;
@@ -135,11 +135,8 @@ int main(int, char** )
   GradientFilterType::Pointer grad = GradientFilterType::New();
   grad->SetInput(randomVolumeSource->GetOutput());
 
-  bool computeGradientAlongDim[Dimension];
-  computeGradientAlongDim[0] = true;
+  std::vector<bool> computeGradientAlongDim(Dimension, true);
   computeGradientAlongDim[1] = false;
-  computeGradientAlongDim[2] = true;
-
   grad->SetDimensionsProcessed(computeGradientAlongDim);
 
   TRY_AND_EXIT_ON_ITK_EXCEPTION( grad->Update() );

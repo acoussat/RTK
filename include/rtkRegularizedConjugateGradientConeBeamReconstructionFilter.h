@@ -253,7 +253,7 @@ protected:
   float m_Tikhonov;
   float m_SoftThresholdWavelets;
   float m_SoftThresholdOnImage;
-  bool  m_DimensionsProcessedForTV[TImage::ImageDimension];
+  std::vector<bool>  m_DimensionsProcessedForTV;
   bool  m_Preconditioned;
   bool  m_RegularizedCG;
 

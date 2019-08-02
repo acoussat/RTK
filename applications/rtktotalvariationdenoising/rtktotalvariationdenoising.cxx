@@ -74,9 +74,8 @@ int main(int argc, char * argv[])
   // Set dimensions to denoise
   if (args_info.dimensions_given)
     {
-      // Cast array of integers to array of booleans
-      bool dimensions[Dimension] = {false, false, false};
-      for (unsigned int dim = 0; dim < Dimension ; dim++)
+      std::vector<bool> dimensions(Dimension, false);
+      for (unsigned int dim = 0; dim < args_info.dimensions_given; dim++)
         {
           if (args_info.dimensions_arg[dim] != 0)
             {

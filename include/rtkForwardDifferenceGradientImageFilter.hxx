@@ -46,10 +46,7 @@ ForwardDifferenceGradientImageFilter< TInputImage, TOperatorValueType, TOuputVal
   this->m_UseImageDirection = true;
 
   // default behaviour is to process all dimensions
-  for (unsigned int dim = 0; dim < TInputImage::ImageDimension; dim++)
-    {
-    m_DimensionsProcessed[dim] = true;
-    }
+  m_DimensionsProcessed.assign(TInputImage::ImageDimension, true);
 }
 
 //
@@ -66,7 +63,7 @@ ForwardDifferenceGradientImageFilter< TInputImage, TOperatorValueType, TOuputVal
 template< typename TInputImage, typename TOperatorValueType, typename TOuputValue , typename TOuputImage >
 void
 ForwardDifferenceGradientImageFilter< TInputImage, TOperatorValueType, TOuputValue, TOuputImage >
-::SetDimensionsProcessed(bool* DimensionsProcessed)
+::SetDimensionsProcessed(const std::vector<bool> & DimensionsProcessed)
 {
   bool bModif=false;
   for (unsigned int dim=0; dim<TInputImage::ImageDimension; dim++)

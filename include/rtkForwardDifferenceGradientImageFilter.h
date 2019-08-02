@@ -117,7 +117,7 @@ public:
   /** Set along which dimensions the gradient computation should be
       performed. The vector components at unprocessed dimensions contain
       undetermined values */
-  void SetDimensionsProcessed(bool* DimensionsProcessed);
+  void SetDimensionsProcessed(const std::vector<bool> & DimensionsProcessed);
 
   /** Allows to change the default boundary condition */
   void OverrideBoundaryCondition(itk::ImageBoundaryCondition< TInputImage >* boundaryCondition);
@@ -203,7 +203,7 @@ private:
   // list of the dimensions along which the gradient has
   // to be computed. The components on other dimensions
   // are set to zero
-  bool m_DimensionsProcessed[TInputImage::ImageDimension];
+  std::vector<bool> m_DimensionsProcessed;
 
   itk::ImageBoundaryCondition< TInputImage, TInputImage >* m_BoundaryCondition;
   bool                                                     m_IsBoundaryConditionOverriden;

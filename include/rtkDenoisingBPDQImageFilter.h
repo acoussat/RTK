@@ -95,7 +95,7 @@ protected:
   double m_Beta;
   double m_MinSpacing;
   int    m_NumberOfIterations;
-  bool   m_DimensionsProcessed[TOutputImage::ImageDimension];
+  std::vector<bool>   m_DimensionsProcessed;
 
 private:
   virtual void SetPipelineForFirstIteration();

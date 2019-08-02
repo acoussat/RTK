@@ -336,10 +336,8 @@ FourDROOSTERConeBeamReconstructionFilter<VolumeSeriesType, ProjectionStackType>
     m_TVDenoisingSpace->SetInput(m_DownstreamFilter->GetOutput());
     m_TVDenoisingSpace->SetNumberOfIterations(this->m_TV_iterations);
     m_TVDenoisingSpace->SetGamma(this->m_GammaTVSpace);
-    m_DimensionsProcessedForTVSpace[0]=true;
-    m_DimensionsProcessedForTVSpace[1]=true;
-    m_DimensionsProcessedForTVSpace[2]=true;
-    m_DimensionsProcessedForTVSpace[3]=false;
+
+    m_DimensionsProcessedForTVSpace.assign({true, true, true, false});
     m_TVDenoisingSpace->SetDimensionsProcessed(this->m_DimensionsProcessedForTVSpace);
 
     m_DownstreamFilter = m_TVDenoisingSpace;
@@ -382,11 +380,9 @@ FourDROOSTERConeBeamReconstructionFilter<VolumeSeriesType, ProjectionStackType>
     m_TVDenoisingTime->SetInput(m_DownstreamFilter->GetOutput());
     m_TVDenoisingTime->SetNumberOfIterations(this->m_TV_iterations);
     m_TVDenoisingTime->SetGamma(this->m_GammaTVTime);
-    m_DimensionsProcessedForTVTime[0]=false;
-    m_DimensionsProcessedForTVTime[1]=false;
-    m_DimensionsProcessedForTVTime[2]=false;
-    m_DimensionsProcessedForTVTime[3]=true;
-    m_TVDenoisingTime->SetDimensionsProcessed(this->m_DimensionsProcessedForTVTime);
+
+    m_DimensionsProcessedForTVTime.assign({false, false, false, true});
+    m_TVDenoisingTime->SetDimensionsProcessed(m_DimensionsProcessedForTVTime);
     m_TVDenoisingTime->SetBoundaryConditionToPeriodic();
 
     m_DownstreamFilter = m_TVDenoisingTime;

@@ -42,8 +42,7 @@ TotalVariationDenoiseSequenceImageFilter< TImageSequence>
   m_PasteFilter->SetSourceImage(m_CastFilter->GetOutput());
 
   // Set default behavior to spatial regularization
-  for (unsigned int dim=0; dim < TImageSequence::ImageDimension-1; dim++)
-    m_DimensionsProcessed[dim]=true;
+  m_DimensionsProcessed.assign(TImageSequence::ImageDimension-1, true);
 
   // Set permanent parameters
   m_ExtractFilter->SetDirectionCollapseToIdentity();
@@ -105,10 +104,10 @@ TotalVariationDenoiseSequenceImageFilter< TImageSequence>
   inputPtr->SetRequestedRegionToLargestPossibleRegion();
 }
 
-template< typename TImageSequence>
+/*template< typename TImageSequence>
 void
 TotalVariationDenoiseSequenceImageFilter< TImageSequence>
-::SetDimensionsProcessed(bool* arg)
+::SetDimensionsProcessed(const std::vector<bool> & arg)
 {
   bool bModif=false;
   for (unsigned int dim=0; dim<TImage::ImageDimension; dim++)
@@ -120,7 +119,7 @@ TotalVariationDenoiseSequenceImageFilter< TImageSequence>
       }
     }
   if(bModif) this->Modified();
-}
+}*/
 
 template< typename TImageSequence>
 void

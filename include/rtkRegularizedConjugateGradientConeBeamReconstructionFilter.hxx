@@ -46,8 +46,7 @@ RegularizedConjugateGradientConeBeamReconstructionFilter<TImage>::RegularizedCon
   m_PerformSoftThresholdOnImage= false;
 
   // Dimensions processed for TV, default is all
-  for (unsigned int i=0; i<TImage::ImageDimension; i++)
-    m_DimensionsProcessedForTV[i]=true;
+  m_DimensionsProcessedForTV.assign(TImage::ImageDimension, true);
 
   // Other parameters
   m_CudaConjugateGradient = true; // 3D volumes of usual size fit on GPUs

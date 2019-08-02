@@ -127,7 +127,7 @@ public:
   /** Sub filter type definitions */
   using MagnitudeThresholdFilterType = MagnitudeThresholdImageFilter<TGradientImage>;
 
-  void SetDimensionsProcessed(bool* arg);
+  void SetDimensionsProcessed(const std::vector<bool> & arg);
 
   /** In some cases, regularization must use periodic boundary condition */
   void SetBoundaryConditionToPeriodic();
