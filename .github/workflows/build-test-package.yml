@@ -193,7 +193,9 @@ jobs:
       run: |
         export ITK_PACKAGE_VERSION=${{ matrix.itk-python-git-tag }}
         export MACOSX_DEPLOYMENT_TARGET=10.9
+        sudo mv /Library/Frameworks/Python.framework/Versions/2.7 $TMPDIR
         ./macpython-download-cache-and-build-module-wheels.sh
+        sudo mv $TMPDIR/2.7 /Library/Frameworks/Python.framework/Versions
 
     - name: Publish Python package as GitHub Artifact
       uses: actions/upload-artifact@v1
