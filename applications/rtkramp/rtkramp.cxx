@@ -102,10 +102,11 @@ main(int argc, char * argv[])
     using PercentageProgressCommandType = rtk::PercentageProgressCommand<CPURampFilterType>;
     PercentageProgressCommandType::Pointer progressCommand = PercentageProgressCommandType::New();
 #ifdef RTK_USE_CUDA
-    cudaRampFilter->AddObserver(itk::ProgressEvent(), progressCommand);
-#else
-    rampFilter->AddObserver(itk::ProgressEvent(), progressCommand);
+    if (!strcmp(args_info.hardware_arg, "cuda"))
+      cudaRampFilter->AddObserver(itk::ProgressEvent(), progressCommand);
+    else
 #endif
+      rampFilter->AddObserver(itk::ProgressEvent(), progressCommand);
   }
 
   TRY_AND_EXIT_ON_ITK_EXCEPTION(streamer->Update())
