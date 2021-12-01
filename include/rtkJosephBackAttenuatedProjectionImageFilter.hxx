@@ -61,7 +61,7 @@ JosephBackAttenuatedProjectionImageFilter<TInputImage,
   // Input 2 is the attenuation map relative to the volume
   typename Superclass::InputImagePointer inputPtr2 = const_cast<TInputImage *>(this->GetInput(2));
   if (!inputPtr2)
-    return;
+    itkExceptionMacro(<< "Attenuation map has not been set.");
   Superclass::GenerateInputRequestedRegion();
 }
 
